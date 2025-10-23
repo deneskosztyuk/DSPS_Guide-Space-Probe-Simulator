@@ -9,19 +9,19 @@
 ---
 
 
-## 1. Introduction to the Deep Space Probe Simulator (DSPS)
+## 1. Introduction to the Space Probe Simulator (SPS)
 
-#### What is DSPS?
+#### What is SPS?
 
-The Deep Space Probe Simulator (DSPS) is an innovative, educational toolkit designed to replicate the functions and challenges of a space probe operating in deep space environments. This simulator serves as a hands-on educational platform, providing users with an immersive experience in aerospace technology, control systems, and environmental sensing. 
+The Space Probe Simulator (SPS) is an innovative, educational toolkit designed to replicate the functions and challenges of a space probe operating in space environments. This simulator serves as a hands-on educational platform, providing users with an immersive experience in aerospace technology, control systems, and environmental sensing. 
 
 #### Purpose of the Project
 
-The primary goal of the DSPS is to inspire and educate future engineers, scientists, and hobbyists by providing a realistic experience of designing, building, and operating a space probe. Through this simulator, users can gain practical insights into the complexities of space exploration technology, including hardware design, software control, and the integration of various electronic sensors.
+The primary goal of the SPS is to inspire and educate future engineers, scientists, and hobbyists by providing a realistic experience of designing, building, and operating a space probe. Through this simulator, users can gain practical insights into the complexities of space exploration technology, including hardware design, software control, and the integration of various electronic sensors.
 
-#### Why Create DSPS?
+#### Why Create SPS?
 
-In the realm of educational tools, there remains a significant gap in resources that combine the technical challenges of aerospace engineering with accessible, hands-on learning. The DSPS project aims to fill this gap by offering a detailed and scalable model that mimics real-world systems used in space missions. This includes:
+In the realm of educational tools, there remains a significant gap in resources that combine the technical challenges of aerospace engineering with accessible, hands-on learning. The SPS project aims to fill this gap by offering a detailed and scalable model that mimics real-world systems used in space missions. This includes:
 
 - **Environmental Data Gathering:** Utilizing sensors to measure conditions such as temperature, humidity, and pressure, simulating the data collection done by space probes in different celestial environments.
 - **Wireless Communication:** Implementing modules that manage data transmission over distances, echoing the communication hurdles faced by space missions between spacecraft and Earth.
@@ -29,30 +29,30 @@ In the realm of educational tools, there remains a significant gap in resources 
 
 #### Target Audience
 
-The DSPS is intended for:
+The SPS is intended for:
 - **Educational Institutions:** As a teaching aid for students in science, technology, engineering, and mathematics (STEM) fields, especially those focused on space technology and remote sensing.
 - **Hobbyists and Amateurs:** Individuals passionate about space and technology, looking to explore these interests through a practical, hands-on project.
-- **Research and Development Groups:** Teams working on satellite technology and remote sensing, who can use the DSPS as a prototype for testing and validation.
+- **Research and Development Groups:** Teams working on satellite technology and remote sensing, who can use the SPS as a prototype for testing and validation.
 
 #### Educational and Professional Development
 
-By engaging with the DSPS, users will:
+By engaging with the SPS, users will:
 - Develop a solid understanding of the technical requirements and challenges involved in space probe missions.
-- Acquire hands-on experience in electronics and software programming through the construction and customization of their version of the DSPS.
+- Acquire hands-on experience in electronics and software programming through the construction and customization of their version of the SPS.
 - Enhance their problem-solving and critical thinking skills by troubleshooting hardware and software issues during the simulation.
 
-The DSPS project not only broadens the knowledge and skills of those involved but also aims to ignite a passion for space exploration and innovation, paving the way for the next generation of engineers and scientists.
+The SPS project not only broadens the knowledge and skills of those involved but also aims to ignite a passion for space exploration and innovation, paving the way for the next generation of engineers and scientists.
 
 ---
 
 ## 2. Software
 
-Software is pivotal in the development and operation of the Deep Space Probe Simulator (DSPS). It serves as the critical interface through which data is both retrieved from and transmitted to the hardware components. To facilitate a thorough understanding and effective utilization of the DSPS, the following guidelines are systematically divided into comprehensive sections, ensuring a structured approach to deployment and operation.
+Software is pivotal in the development and operation of the Space Probe Simulator (SPS). It serves as the critical interface through which data is both retrieved from and transmitted to the hardware components. To facilitate a thorough understanding and effective utilization of the SPS, the following guidelines are systematically divided into comprehensive sections, ensuring a structured approach to deployment and operation.
 
-The instructional content begins with an introduction to the Python programming segment. This section details the specific code necessary for initiating and managing communication protocols between the DSPS hardware and the software interface. Following this, the focus shifts to the Arduino platform. Here, you will learn how to configure and program the Arduino to interact seamlessly with the DSPS, which is essential for real-time data handling and processing.
-Subsequently, the guidelines elucidate the procedure for establishing a robust connection between your computing device and the DSPS. This involves setting up the necessary network or direct connections, configuring relevant settings, and ensuring reliable communication pathways are in place.
+The instructional content begins with an introduction to the Python programming segment. This section details the specific code necessary for initiating and managing communication protocols between the SPS hardware and the software interface. Following this, the focus shifts to the Arduino platform. Here, you will learn how to configure and program the Arduino to interact seamlessly with the SPS, which is essential for real-time data handling and processing.
+Subsequently, the guidelines elucidate the procedure for establishing a robust connection between your computing device and the SPS. This involves setting up the necessary network or direct connections, configuring relevant settings, and ensuring reliable communication pathways are in place.
 
-Finally, the manual covers the procedures for data streaming. This portion instructs on how to effectively capture, transmit, and visualize the data generated by the DSPS. By following these step-by-step instructions, users will be equipped to harness the full capabilities of the DSPS, ensuring optimal performance and functionality in various applications. Each section is designed to build upon the previous one, thereby providing a cohesive and comprehensive framework for DSPS deployment and use.
+Finally, the manual covers the procedures for data streaming. This portion instructs on how to effectively capture, transmit, and visualize the data generated by the SPS. By following these step-by-step instructions, users will be equipped to harness the full capabilities of the SPS, ensuring optimal performance and functionality in various applications. Each section is designed to build upon the previous one, thereby providing a cohesive and comprehensive framework for SPS deployment and use.
 
 ### 2.1 Python
 
@@ -60,7 +60,7 @@ To get started:
 1. Open your favourite IDE, for this I recommend VS Code.
 2. Create a new folder which will hold your Python script.
 3. Create a main.py script in the new folder you just made.
-4. Clone or copy the main.py code from this git repository. (https://github.com/deneskosztyuk/DSPS_Guide-Deep-Space-Probe-Simulator/blob/main/main.py)
+4. Clone or copy the main.py code from this git repository. (https://github.com/deneskosztyuk/SPS_Guide-Deep-Space-Probe-Simulator/blob/main/main.py)
 5. Head to the "Terminal" tab in VS Code (or press "ctrl+`" on Windows, alternatively you can click on the View tab at the top and choose Terminal from the list)
 6. In the Terminal that just opened install the necessary python libraries in order to make the main.py script work.
 To install the necessary libraries paste the following command into your Termnial: "pip install requests pillow flask matplotlib"
@@ -107,25 +107,25 @@ You can install these libraries by opening the Arduino IDE, going to `Sketch > I
 Remember that some of these libraries may have dependencies on other libraries, so make sure to check the documentation for each library to ensure you have all the necessary components installed for your project.
 
 - Once you installed the necessary libraries, go ahead and copy the code that ends with .ino from this repository.
-(https://github.com/deneskosztyuk/DSPS_Guide-Deep-Space-Probe-Simulator/blob/main/dsps.ino)
+(https://github.com/deneskosztyuk/SPS_Guide-Deep-Space-Probe-Simulator/blob/main/SPS.ino)
 This section will be a bit more comprehensive but dont worry, just read throug the guide carefully.
-There are a few things you will need to change in the `dsps.ino` file, find the:
+There are a few things you will need to change in the `SPS.ino` file, find the:
 `const char* ssid = "ENTER YOUR WIFI NETWORKS NAME EXACTLY";  // Replace with your hotspot's SSID
 const char* password = "CHANGE THIS TO YOUR NETWORKS PASSWORD";  // Replace with your hotspot's password`
 Replace the values in the quotation marks, in the `ssid` enter the exact name of your home WiFi network.
 In the same manner, replace the values in the quotation marks, in the `password`, enter the exact password of your WiFi network.
-This setup will ensure both DSPS and the PC you are using are running on the same network as the device uses HTTP to send and recieve requests and data.
+This setup will ensure both SPS and the PC you are using are running on the same network as the device uses HTTP to send and recieve requests and data.
 
 - Further down, on line 36 you will see the following code line: `http.begin("CHANGE THIS TO YOUR IPv4/sensor-data"); // Your server's URL, example: http.begin("192.168.1.1/sensor-data");`
 
-Here you will need to enter the IPv4 that you will get when you run the main.py script in VS Code, check the console and find the IPv4 address, copy it and paste it into the dsps.ino line where it says `"CHANGE THIS TO YOUR IPv4"`
+Here you will need to enter the IPv4 that you will get when you run the main.py script in VS Code, check the console and find the IPv4 address, copy it and paste it into the SPS.ino line where it says `"CHANGE THIS TO YOUR IPv4"`
 
 With this setup we are done with the software part.
 
 ### 3. Hardware
 
 ##### Hardware prerequisites
-To setup the DSPS you will need the following hardware, you can find these cheap on places like `Amazon`.
+To setup the SPS you will need the following hardware, you can find these cheap on places like `Amazon`.
 - Breadboard
 - ESP32 Microcontroller
 - Micro USB cable (Make sure its capable of data transfer and not just charging, check the description)
@@ -152,6 +152,6 @@ Now you have the BME280 sensor successfully setup.
 
 ## Conclusion
 
-Now that you succesfully setup both codes and the hardware, go ahead and Verify button in the Arduino IDE, once succesfully compiled press the `Upload` button next to it to upload your code to the ESP32, once successful you should see BME280 readings in the `Serial Monitor` (second tab at the bottom once the code has been uploaded, or the maginifying glass icon in the top right). Once that's done, head on to VS Code and run your main.py code, you will see the DSPS Control Software switch on, from this point you can start playing around with it as you successfully made a simple satellite probe in a home setting.
+Now that you succesfully setup both codes and the hardware, go ahead and Verify button in the Arduino IDE, once succesfully compiled press the `Upload` button next to it to upload your code to the ESP32, once successful you should see BME280 readings in the `Serial Monitor` (second tab at the bottom once the code has been uploaded, or the maginifying glass icon in the top right). Once that's done, head on to VS Code and run your main.py code, you will see the SPS Control Software switch on, from this point you can start playing around with it as you successfully made a simple satellite probe in a home setting.
 
 If for any reason you experience issues or bugs, use the `Contact Me` on my webpage: [denesk.co.uk](https://www.denesk.co.uk/)
