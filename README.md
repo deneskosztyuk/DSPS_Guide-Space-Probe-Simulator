@@ -13,7 +13,7 @@
 
 #### What is SPS?
 
-The Space Probe Simulator (SPS) is an innovative, educational toolkit designed to replicate the functions and challenges of a space probe operating in space environments. This simulator serves as a hands-on educational platform, providing users with an immersive experience in aerospace technology, control systems, and environmental sensing. 
+A passion project and an educational toolkit designed to replicate the functions and challenges of a probe operating in lond-distance environments. This simulator serves as a hands-on educational platform, providing users with an immersive experience in aerospace technology, control systems, and environmental sensing. 
 <img width="743" height="453" alt="SPS - Picture1" src="https://github.com/user-attachments/assets/3479f3b6-e63c-4f6c-9101-a194d9a07815" />
 
 
