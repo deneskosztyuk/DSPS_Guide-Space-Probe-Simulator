@@ -38,7 +38,7 @@ This section provides step-by-step instructions for setting up both software com
 1. Open your IDE (VS Code recommended).
 2. Create a new project folder for the Python application.
 3. Create a `main.py` file in your project directory.
-4. Clone or copy the `main.py` code from this repository: [https://github.com/deneskosztyuk/_Guide-Deep-Space-Probe-Simulator/blob/main/main.py](https://github.com/deneskosztyuk/_Guide-Deep-Space-Probe-Simulator/blob/main/main.py)
+4. Clone or copy the `main.py` code from this repository.
 5. Open the integrated terminal in VS Code (`Ctrl + `` or View > Terminal).
 6. Install required dependencies by running:
    ```
