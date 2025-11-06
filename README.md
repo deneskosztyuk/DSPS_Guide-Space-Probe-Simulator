@@ -1,160 +1,187 @@
-## Table of Content:
+***
+## Table of Contents
 ### 1. Introduction
 ### 2. Software
 ### 2.1 Python
 ### 2.2 Arduino C++
-### 3. Hardware setup
+### 3. Hardware Setup
 ### 4. Conclusion
 
----
+***
 
+## 1. Introduction to the ESP32 IoT Telemetry Dashboard
 
-## 1. Introduction to the Space Probe Simulator (SPS)
+<img width="743" height="453" alt="ESP32 Telemetry Dashboard" src="https://github.com/user-attachments/assets/58423d85-f52f-4420-91cf-fa174ff6e26f" />
 
-#### What is SPS?
+This project demonstrates a complete IoT telemetry system built around the ESP32 microcontroller. The system showcases three core technical capabilities:
 
-A passion project and an educational toolkit designed to replicate the functions and challenges of a probe operating in lond-distance environments. This simulator serves as a hands-on educational platform, providing users with an immersive experience in aerospace technology, control systems, and environmental sensing. 
-<img width="743" height="453" alt="SPS - Picture1" src="https://github.com/user-attachments/assets/58423d85-f52f-4420-91cf-fa174ff6e26f" />
-
-#### Purpose of the Project
-
-The primary goal of the SPS is to inspire and educate future engineers, scientists, and hobbyists by providing a realistic experience of designing, building, and operating a space probe. Through this simulator, users can gain practical insights into the complexities of space exploration technology, including hardware design, software control, and the integration of various electronic sensors.
-
-#### Why Create SPS?
-
-In the realm of educational tools, there remains a significant gap in resources that combine the technical challenges of aerospace engineering with accessible, hands-on learning. The SPS project aims to fill this gap by offering a detailed and scalable model that mimics real-world systems used in space missions. This includes:
-
-- **Environmental Data Gathering:** Utilizing sensors to measure conditions such as temperature, humidity, and pressure, simulating the data collection done by space probes in different celestial environments.
-- **Wireless Communication:** Implementing modules that manage data transmission over distances, echoing the communication hurdles faced by space missions between spacecraft and Earth.
-- **Software Control Mechanisms:** Developing an interface that allows users to send commands and receive data, providing insights into the software and network requirements of space mission control.
-
-#### Target Audience
-
-The SPS is intended for:
-- **Educational Institutions:** As a teaching aid for students in science, technology, engineering, and mathematics (STEM) fields, especially those focused on space technology and remote sensing.
-- **Hobbyists and Amateurs:** Individuals passionate about space and technology, looking to explore these interests through a practical, hands-on project.
-- **Research and Development Groups:** Teams working on satellite technology and remote sensing, who can use the SPS as a prototype for testing and validation.
-
-#### Educational and Professional Development
-
-By engaging with the SPS, users will:
-- Develop a solid understanding of the technical requirements and challenges involved in space probe missions.
-- Acquire hands-on experience in electronics and software programming through the construction and customization of their version of the SPS.
-- Enhance their problem-solving and critical thinking skills by troubleshooting hardware and software issues during the simulation.
-
-The SPS project not only broadens the knowledge and skills of those involved but also aims to ignite a passion for space exploration and innovation, paving the way for the next generation of engineers and scientists.
+- **Real-Time Environmental Data Acquisition:** Using I2C sensors (BME280) to measure temperature, humidity, and atmospheric pressure with continuous data sampling and processing.
+- **HTTP-Based Wireless Communication:** Implementing RESTful API communication between embedded hardware and desktop software over WiFi networks, handling JSON serialization and HTTP request/response cycles.
+- **Full-Stack Dashboard Interface:** Developing a Flask-based web server with Tkinter GUI for real-time data visualization, command transmission, and system monitoring.
 
 ---
 
-## 2. Software
-<img width="461" height="301" alt="SPS - Picture3" src="https://github.com/user-attachments/assets/dcb99a37-6968-4cb4-9dec-20f8fe47530f" />
+## 2. Software Architecture
 
-Software is pivotal in the development and operation of the Space Probe Simulator (SPS). It serves as the critical interface through which data is both retrieved from and transmitted to the hardware components. To facilitate a thorough understanding and effective utilization of the SPS, the following guidelines are systematically divided into comprehensive sections, ensuring a structured approach to deployment and operation.
+<img width="461" height="301" alt="Software Stack" src="https://github.com/user-attachments/assets/dcb99a37-6968-4cb4-9dec-20f8fe47530f" />
 
-The instructional content begins with an introduction to the Python programming segment. This section details the specific code necessary for initiating and managing communication protocols between the SPS hardware and the software interface. Following this, the focus shifts to the Arduino platform. Here, you will learn how to configure and program the Arduino to interact seamlessly with the SPS, which is essential for real-time data handling and processing.
-Subsequently, the guidelines elucidate the procedure for establishing a robust connection between your computing device and the SPS. This involves setting up the necessary network or direct connections, configuring relevant settings, and ensuring reliable communication pathways are in place.
+The software stack consists of two primary components: a Python-based desktop application handling data visualization and HTTP server functionality, and Arduino C++ firmware managing sensor integration and network communication on the ESP32.
 
-Finally, the manual covers the procedures for data streaming. This portion instructs on how to effectively capture, transmit, and visualize the data generated by the SPS. By following these step-by-step instructions, users will be equipped to harness the full capabilities of the SPS, ensuring optimal performance and functionality in various applications. Each section is designed to build upon the previous one, thereby providing a cohesive and comprehensive framework for SPS deployment and use.
+The system architecture follows a client-server model where the ESP32 acts as an HTTP client periodically posting sensor data to a Flask server running on the host machine. The server processes incoming telemetry, stores it in memory, and renders real-time graphs through a Tkinter-based GUI using Matplotlib for visualization.
+
+This section provides step-by-step instructions for setting up both software components, establishing network connectivity, and initiating bidirectional data streaming between hardware and software layers.
 
 ### 2.1 Python
 
-To get started:
-1. Open your favourite IDE, for this I recommend VS Code.
-2. Create a new folder which will hold your Python script.
-3. Create a main.py script in the new folder you just made.
-4. Clone or copy the main.py code from this git repository. (https://github.com/deneskosztyuk/SPS_Guide-Deep-Space-Probe-Simulator/blob/main/main.py)
-5. Head to the "Terminal" tab in VS Code (or press "ctrl+`" on Windows, alternatively you can click on the View tab at the top and choose Terminal from the list)
-6. In the Terminal that just opened install the necessary python libraries in order to make the main.py script work.
-To install the necessary libraries paste the following command into your Termnial: "pip install requests pillow flask matplotlib"
+**Setup Instructions:**
 
-#### Here is a detailed breakdown what each library is used for in the application.
+1. Open your IDE (VS Code recommended).
+2. Create a new project folder for the Python application.
+3. Create a `main.py` file in your project directory.
+4. Clone or copy the `main.py` code from this repository: [https://github.com/deneskosztyuk/_Guide-Deep-Space-Probe-Simulator/blob/main/main.py](https://github.com/deneskosztyuk/_Guide-Deep-Space-Probe-Simulator/blob/main/main.py)
+5. Open the integrated terminal in VS Code (`Ctrl + `` or View > Terminal).
+6. Install required dependencies by running:
+   ```
+   pip install requests pillow flask matplotlib
+   ```
+
+**Library Dependencies:**
+
 - **Standard Python Libraries:**
-  - `os`: Provides a way of using operating system dependent functionality.
-  - `signal`: Set handlers for asynchronous events.
-  - `threading`: Construct higher-level threading interfaces on top of the lower level thread module.
-  - `itertools`: Functions creating iterators for efficient looping.
-  - `datetime`: Classes for manipulating dates and times.
-  - `math`: Mathematical functions (according to the C standard).
+  - `os`: Operating system interface for file and directory operations.
+  - `signal`: Asynchronous event handling for graceful shutdown.
+  - `threading`: Multi-threaded execution for concurrent GUI and server operations.
+  - `itertools`: Efficient iteration tools for data processing.
+  - `datetime`: Timestamp management for telemetry data.
+  - `math`: Mathematical operations for data calculations.
 
 - **Third-Party Libraries:**
-  - `requests`: Allows you to send HTTP/1.1 requests easily.
-  - `tkinter as tk`: Standard Python interface to the Tk GUI toolkit.
-  - `PIL (Python Imaging Library)`: Adds image processing capabilities.
-    - `Image`: Provides a class with the same name which is used to represent a PIL image.
-    - `ImageTk`: Contains support to create and modify Tkinter BitmapImage and PhotoImage objects from PIL images.
-    - `ImageSequence`: An iterator to loop over an image sequence.
-  - `flask`: A micro web framework for Python.
-    - `Flask`: The class that acts as the central object. It is an instance of this class that becomes the WSGI application.
-    - `request`: The request object used by default in Flask. Contains all the information about the request.
-    - `jsonify`: Creates a JSON response from a dictionary.
-  - `matplotlib`: A plotting library for Python and its numerical mathematics extension NumPy.
-    - `Figure`: The top level container for all the plot elements.
-    - `backend_tkagg`: A backend for Matplotlib to be used with Tkinter.
-    - `gridspec`: Specifies the geometry of the grid that a subplot will be placed in.
+  - `requests`: HTTP client library for network communication.
+  - `tkinter`: GUI framework for desktop interface rendering.
+  - `PIL (Pillow)`: Image processing for GUI assets.
+    - `Image`: Image manipulation and loading.
+    - `ImageTk`: Tkinter-compatible image objects.
+    - `ImageSequence`: GIF animation frame handling.
+  - `Flask`: Lightweight HTTP server framework.
+    - `Flask`: WSGI application instance.
+    - `request`: HTTP request object handling.
+    - `jsonify`: JSON response serialization.
+  - `Matplotlib`: Data visualization library.
+    - `Figure`: Plot container for telemetry graphs.
+    - `FigureCanvasTkAgg`: Tkinter backend for Matplotlib integration.
+    - `GridSpec`: Subplot layout management.
 
-At this point all the necessary libraries are installed and you shouldn't get any errors.
+After installation, all dependencies will be satisfied and the application should run without import errors.
 
-### 2.2 Arduino IDE & C++ 
+### 2.2 Arduino IDE & C++
 
-- Go ahead and download Arudino IDE if you haven't already: https://www.arduino.cc/en/software
-- Open the Arduino IDE. Before you paste the code from this repository we need to install a few things here as well, type in each name individually until you installed all libraries from the list below:
-  - **WiFi**: For connecting to the internet using the WiFi protocol.
-  - **Wire**: For communication with I2C / TWI devices.
-  - **Adafruit_Sensor**: For a unified sensor interface.
-  - **Adafruit_BME280**: For interfacing with the BME280 sensor (temperature, humidity, and pressure).
-  - **HTTPClient**: For making HTTP requests.
-  - **ArduinoJson**: For JSON encoding and decoding.
+**Setup Instructions:**
 
-You can install these libraries by opening the Arduino IDE, going to `Sketch > Include Library > Manage Libraries...`, and then searching for each library by name. Once found, you can click on the library and then click the "Install" button to install it.
-Remember that some of these libraries may have dependencies on other libraries, so make sure to check the documentation for each library to ensure you have all the necessary components installed for your project.
+1. Download and install Arduino IDE: [https://www.arduino.cc/en/software](https://www.arduino.cc/en/software)
+2. Open Arduino IDE and navigate to `Sketch > Include Library > Manage Libraries...`
+3. Install the following libraries (search by name and click Install):
+   - **WiFi**: ESP32 WiFi connectivity and network stack.
+   - **Wire**: I2C communication protocol implementation.
+   - **Adafruit_Sensor**: Unified sensor driver interface.
+   - **Adafruit_BME280**: BME280 sensor driver (temperature, humidity, pressure).
+   - **HTTPClient**: HTTP request/response handling.
+   - **ArduinoJson**: JSON encoding and decoding library.
 
-- Once you installed the necessary libraries, go ahead and copy the code that ends with .ino from this repository.
-(https://github.com/deneskosztyuk/SPS_Guide-Deep-Space-Probe-Simulator/blob/main/SPS.ino)
-This section will be a bit more comprehensive but dont worry, just read throug the guide carefully.
-There are a few things you will need to change in the `SPS.ino` file, find the:
-`const char* ssid = "ENTER YOUR WIFI NETWORKS NAME EXACTLY";  // Replace with your hotspot's SSID
-const char* password = "CHANGE THIS TO YOUR NETWORKS PASSWORD";  // Replace with your hotspot's password`
-Replace the values in the quotation marks, in the `ssid` enter the exact name of your home WiFi network.
-In the same manner, replace the values in the quotation marks, in the `password`, enter the exact password of your WiFi network.
-This setup will ensure both SPS and the PC you are using are running on the same network as the device uses HTTP to send and recieve requests and data.
+**Note:** Some libraries have dependencies—the Arduino Library Manager will automatically resolve and install these.
 
-- Further down, on line 36 you will see the following code line: `http.begin("CHANGE THIS TO YOUR IPv4/sensor-data"); // Your server's URL, example: http.begin("192.168.1.1/sensor-data");`
+4. Copy the `.ino` firmware code from this repository: [https://github.com/deneskosztyuk/_Guide-Deep-Space-Probe-Simulator/blob/main/.ino](https://github.com/deneskosztyuk/_Guide-Deep-Space-Probe-Simulator/blob/main/.ino)
 
-Here you will need to enter the IPv4 that you will get when you run the main.py script in VS Code, check the console and find the IPv4 address, copy it and paste it into the SPS.ino line where it says `"CHANGE THIS TO YOUR IPv4"`
+**Network Configuration:**
 
-With this setup we are done with the software part.
+Locate the following lines in the `.ino` file:
 
-### 3. Hardware
+```cpp
+const char* ssid = "ENTER YOUR WIFI NETWORKS NAME EXACTLY";
+const char* password = "CHANGE THIS TO YOUR NETWORKS PASSWORD";
+```
 
-##### Hardware prerequisites
-To setup the SPS you will need the following hardware, you can find these cheap on places like `Amazon`.
-- Breadboard
-- ESP32 Microcontroller
-- Micro USB cable (Make sure its capable of data transfer and not just charging, check the description)
-- BME280 Sensor
-- Jump wires (male to male, female to male)
-- LEDs
+Replace the placeholder values:
+- `ssid`: Enter your WiFi network name exactly as it appears.
+- `password`: Enter your WiFi network password.
 
-1. Place the breadboard on a flat surface, use a red jump wire to connect both positive lines marked with `+` on both side, do the same for the `-`, this ensures the entire board can be powered and grounded no matter from where you would want to connect your wires up.
+This ensures both the ESP32 and your computer are on the same local network for HTTP communication.
 
-2. Connect a wire from the `3V3` pin on the ESP32 to the `+` positive line on the breadboard. This will supply 3 volts across the board.
+**Server Endpoint Configuration:**
 
-3. Setup the BME280. Place the BME280 on the breadboard:
-- Connect the `GND` pin to the `-` on the breadboard.
-- Connect the `VIN` pin to the `+` on the breadboard.
-- Connect the `SCL` pin of the BME280 to pin `22` on the ESP32.
-- Connect the `SDL` pin of the BME280 to the pin `21` on the ESP32.
-Now you have the BME280 sensor successfully setup.
+On line 36, locate:
 
-4. [Optional] You can setup an LED to give visual feedback on the connection status of your hardware setup.
-- Connect the short leg of the LED to ground (`-` line on the breadboard)
-- Connect the long one to one end of a 220 Ohm resistor, the other leg of the resistor connect to pin `23` on the ESP32.
+```cpp
+http.begin("CHANGE THIS TO YOUR IPv4/sensor-data");
+// Example: http.begin("192.168.1.100/sensor-data");
+```
 
----
+When you run the Python `main.py` script, the console will display your machine's local IPv4 address. Copy this address and replace the placeholder in the `.ino` file:
 
-## Conclusion
-<img width="978" height="521" alt="SPS - Picture4" src="https://github.com/user-attachments/assets/49573bd1-83e5-4767-b336-120f9fa844f6" />
+```cpp
+http.begin("192.168.1.XXX/sensor-data");  // Use your actual IPv4
+```
 
-Now that you succesfully setup both codes and the hardware, go ahead and Verify button in the Arduino IDE, once succesfully compiled press the `Upload` button next to it to upload your code to the ESP32, once successful you should see BME280 readings in the `Serial Monitor` (second tab at the bottom once the code has been uploaded, or the maginifying glass icon in the top right). Once that's done, head on to VS Code and run your main.py code, you will see the SPS Control Software switch on, from this point you can start playing around with it as you successfully made a simple satellite probe in a home setting.
+This completes the software configuration.
 
-If for any reason you experience issues or bugs, use the `Contact Me` on my webpage: [denesk.co.uk](https://www.denesk.co.uk/)
+***
+
+## 3. Hardware Setup
+
+**Required Components:**
+
+- Breadboard (400-830 tie points)
+- ESP32 Development Board
+- Micro USB cable (data-capable, not charge-only)
+- BME280 Environmental Sensor (I2C interface)
+- Male-to-male and male-to-female jumper wires
+- LEDs (optional, for status indication)
+- 220Ω resistor (if using LED)
+
+**Assembly Instructions:**
+
+1. **Power Rail Setup:**
+   - Connect both positive rails (`+`) on the breadboard using a red jumper wire.
+   - Connect both ground rails (`-`) on the breadboard using a black jumper wire.
+   - This distributes power and ground across the entire breadboard.
+
+2. **Power Distribution:**
+   - Connect the ESP32's `3V3` pin to the breadboard's `+` rail.
+   - Connect the ESP32's `GND` pin to the breadboard's `-` rail.
+
+3. **BME280 Sensor Wiring:**
+   - Place the BME280 on the breadboard.
+   - Connect BME280 `GND` → Breadboard `-` rail
+   - Connect BME280 `VIN` (or `VCC`) → Breadboard `+` rail
+   - Connect BME280 `SCL` → ESP32 pin `22` (I2C clock)
+   - Connect BME280 `SDA` → ESP32 pin `21` (I2C data)
+
+4. **Status LED (Optional):**
+   - Connect LED cathode (short leg) → Breadboard `-` rail
+   - Connect LED anode (long leg) → 220Ω resistor → ESP32 pin `23`
+
+***
+
+## 4. Conclusion
+
+<img width="978" height="521" alt="Dashboard Interface" src="https://github.com/user-attachments/assets/49573bd1-83e5-4767-b336-120f9fa844f6" />
+
+**Running the System:**
+
+1. **Upload Firmware:**
+   - Click `Verify` in Arduino IDE to compile the firmware.
+   - Click `Upload` to flash the ESP32.
+   - Open `Serial Monitor` (magnifying glass icon or `Tools > Serial Monitor`) to verify BME280 readings.
+
+2. **Launch Dashboard:**
+   - Run `main.py` in VS Code.
+   - The Flask server will start and display your local IPv4 address in the console.
+   - The Tkinter GUI will launch, showing real-time telemetry data.
+
+3. **System Operation:**
+   - The ESP32 will automatically connect to WiFi and begin transmitting sensor data via HTTP POST requests.
+   - The dashboard will visualize temperature, humidity, and pressure in real-time graphs.
+   - You can interact with the GUI to monitor system status and performance metrics.
+
+This project demonstrates end-to-end IoT system development, from embedded firmware and hardware integration to full-stack software architecture and real-time data visualization.
+
+***
