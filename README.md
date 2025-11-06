@@ -89,7 +89,7 @@ After installation, all dependencies will be satisfied and the application shoul
 
 **Note:** Some libraries have dependencies—the Arduino Library Manager will automatically resolve and install these.
 
-4. Copy the `.ino` firmware code from this repository: [https://github.com/deneskosztyuk/_Guide-Deep-Space-Probe-Simulator/blob/main/.ino](https://github.com/deneskosztyuk/_Guide-Deep-Space-Probe-Simulator/blob/main/.ino)
+4. Copy the `.ino` firmware code from this repository.
 
 **Network Configuration:**
 
